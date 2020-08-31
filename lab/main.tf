@@ -166,7 +166,7 @@ resource "aws_key_pair" "lab_keypair" {
 }
 resource "aws_instance" "worker" {
   count           = 2
-  image_id        = data.aws_ami.latest_agent.id
+  ami             = data.aws_ami.latest_agent.id
   instance_type   = "t3.micro"
   security_groups = [aws_security_group.worker.id]
   key_name        = aws_key_pair.lab_keypair.id
