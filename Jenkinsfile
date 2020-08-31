@@ -45,7 +45,7 @@ environment {
 sh '''
         rm -rf .terraform ssh
 	mkdir ssh
-	time terraform init -backend-config="bucket=devops-bootcamp-remote-state-$$TF_NAMESPACE" -backend-config="key=$$TF_NAMESPACE/labs/terraform.tfstate" -backend-config="dynamodb_table=devops-bootcamp-locks-$$TF_NAMESPACE"
+	time terraform init -backend-config="bucket=devops-bootcamp-remote-state-sarah" -backend-config="key=sarah/labs/terraform.tfstate" -backend-config="dynamodb_table=devops-bootcamp-locks-sarah"
 	ssh-keygen -t rsa -f ./ssh/id_rsa -q -N ""
 
 
