@@ -40,14 +40,14 @@ environment {
   }
   stages {
       stage("init") {
-        container('kubectl'){  
           steps {
-              sh 'make init'
+           container('kubectl'){
+            sh 'make init'
           }
       }}
       stage("workspace") {
-          container('kubectl'){
-          steps {
+          steps { 
+       container('kubectl'){  
               sh """
 terraform workspace select new-workspace
 if [[ \$? -ne 0 ]]; then
@@ -58,14 +58,14 @@ make init
           }
       }}
       stage("plan") {
-        container('kubectl'){
-          steps {
+          steps { 
+       container('kubectl'){  
               sh 'make plan'
           }
       }}
       stage("apply") {
-        container('kubectl'){
            steps {
+             container('kubectl'){
               sh 'make apply'
           }
       }}
