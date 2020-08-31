@@ -1,6 +1,6 @@
-output "bastion_ip" {
-  value = module.dev.worker
+output "controlplane_ip" {
+  value = module.dev.controlplane
 }
-output "bastion_ip" {
+output "worker_ip" {
   value = module.dev.worker
 }
