@@ -90,6 +90,7 @@ resource "aws_subnet" "worker" {
 }
 
 resource "aws_subnet" "controlplane" {
+  count                   = 1
   vpc_id                  = aws_vpc.lab.id
   cidr_block              = format("10.0.%s.0/24", count.index + 20)
   map_public_ip_on_launch = true
@@ -175,6 +176,7 @@ resource "aws_instance" "worker" {
 }
 
 resource "aws_instance" "controlplane" {
+  count                  = 1
   ami                    = data.aws_ami.latest_server.id
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.controlplane.id
