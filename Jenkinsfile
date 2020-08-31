@@ -42,7 +42,7 @@ environment {
       stage("init") {
           steps {
            container('kubectl'){
-            sh 'make init'
+            sh 'terraform init'
           }
       }}
       stage("workspace") {
