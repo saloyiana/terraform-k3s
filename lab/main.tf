@@ -1,3 +1,4 @@
+provider "random" {}
 module "tags_network" {
   source      = "git::https://github.com/cloudposse/terraform-null-label.git"
   namespace   = var.name
@@ -152,11 +153,17 @@ resource "aws_security_group" "worker" {
   }
 }
 
-resource "aws_key_pair" "lab_keypair" {
-  key_name   = format("%s%s", var.name, "_keypair")
-  public_key = file(var.public_key_path)
-}
+resource "random_id" "keypair" {
+  keepers = {
+    public_key = file(var.public_key_path)
+  }
 
+  byte_length = 8
+}
+resource "aws_key_pair" "lab_keypair" {
+  key_name   = format("%s_keypair_%s", var.name, random_id.keypair.hex)
+  public_key = random_id.keypair.keepers.public_key
+}
 resource "aws_instance" "worker" {
   count           = 2
   image_id        = data.aws_ami.latest_agent.id
