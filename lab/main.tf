@@ -45,7 +45,7 @@ data "aws_ami" "latest_server" {
 
   filter {
     name   = "name"
-    values = ["bryan-k3s-server*"]
+    values = ["sarah-k3s-server*"]
   }
 }
 
@@ -55,7 +55,7 @@ data "aws_ami" "latest_agent" {
 
   filter {
     name   = "name"
-    values = ["bryan-k3s-agent*"]
+    values = ["sarah-k3s-agent*"]
   }
 }
 
