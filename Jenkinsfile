@@ -48,11 +48,14 @@ environment {
       stage("workspace") {
           steps { 
        container('kubectl'){  
-              sh """
+ sh """
+terraform workspace select new-workspace
+if [[ \$? -ne 0 ]]; then
   terraform workspace new new-workspace
-  make init
-"""
-          }
+fi
+make init
+"""          
+}
       }}
       stage("plan") {
           steps { 
