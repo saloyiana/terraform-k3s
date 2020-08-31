@@ -179,7 +179,7 @@ resource "aws_instance" "controlplane" {
   count                  = 1
   ami                    = data.aws_ami.latest_server.id
   instance_type          = "t3.micro"
-  subnet_id              = aws_subnet.controlplane.id
+  subnet_id              = aws_subnet.controlplane[count.index].id
   vpc_security_group_ids = [aws_security_group.controlplane.id]
   key_name               = aws_key_pair.lab_keypair.id
   tags                   = module.tags_controlplane.tags
