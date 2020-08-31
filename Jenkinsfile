@@ -19,7 +19,7 @@ spec:
     - mountPath: /var/run/docker.sock
       name: docker-sock
   - name: kubectl
-    image: bryandollery/terraform-packer-aws-alpine
+    image: bryandollery/terraform-packer-aws-alpine:latest
     command:
     - cat
     tty: true
